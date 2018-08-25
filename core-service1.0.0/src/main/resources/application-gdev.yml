@@ -1,0 +1,8 @@
+env: gdev
+
+server:
+  port: 8181
+
+restfulApi:
+  generalRecordUrl: http://localhost:3306/general
+  clockRecordUrl: http://localhost:3306/clock
