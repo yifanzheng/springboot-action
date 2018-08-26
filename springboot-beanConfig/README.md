@@ -1,7 +1,7 @@
 # SpringBoot 资源文件属性配置 #
---- 
-#### 优先级 ####
---- 
+
+### 优先级 ###
+
     1. 命令行参数。
     2. 从 java:comp/env 得到的 JNDI 属性。
     3. 通过 System.getProperties() 获取的 Java 系统参数。
@@ -21,8 +21,8 @@
     注意：application.properties的优先级高于application.yml文件的优先级。
 
 
-#### 资源文件中的属性配置与映射到实体类
----
+### 资源文件中的属性配置与映射到实体类
+
 首先在pom.xml文件中，加入依赖项：
 ```java
   <!--加入该依赖，才能用于读取配置值-->
@@ -86,8 +86,8 @@
 ```
 在没有使用`@PropertySource`注解指定加载的文件时，默认使用`application.properties`文件中的与实体对象的属性。
 `@PropertySources`注解优先级比较低，即使指定了加载的文件，但出现与`application.properties`相同的配置项时会被其覆盖。
-#### 多环境配置（数据库配置，Redis配置，日志配置）
----
+### 多环境配置（数据库配置，Redis配置，日志配置）
+
 `application-dev.properties`: 开发环境
 `application-prod.properties`: 生产环境
 
@@ -95,8 +95,8 @@ springboot通过`application.roperties`文件，设置`spring.profiles.active`�
 
 注意：springboot根据环境激活配置文件的规则是，默认加载`application.properties`文件，当此文件配置了`spring.profiles.active=xxx`后，会加载`application-xxx.properties`文件中的配置项，并覆盖`application.properties`中相同的配置项。
 
-#### 最后
----
+### 最后
+
 1. 使用`.yml`文件时，属性值和冒号中间必须要有空格。
 2. `.yml`文件在配置中文值时，读取不会出现乱码问题；`.properties`文件配置中文值，读取会出现乱码。
 因为springboot是以`iso-8859-1`的编码格式读取`.properties`文件。
