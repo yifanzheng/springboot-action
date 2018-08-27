@@ -2,6 +2,7 @@ package com.newegg.core.service.service.qin.chain;
 
 import com.newegg.core.service.domain.GeneralRecord;
 import com.newegg.core.service.service.qin.Leave;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,8 @@ import java.util.Objects;
  * @Date: 2018/8/23 16:30
  * @Description:
  */
+@Component
+@Qualifier("entry")
 public class Entry extends Leave {
     @Override
     public void process(GeneralRecord record) {

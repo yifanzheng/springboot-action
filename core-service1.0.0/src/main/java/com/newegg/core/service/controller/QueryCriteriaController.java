@@ -1,6 +1,5 @@
 package com.newegg.core.service.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.newegg.core.service.cache.QinCache;
 import com.newegg.core.service.domain.Query;
 import org.springframework.beans.factory.annotation.Autowired;

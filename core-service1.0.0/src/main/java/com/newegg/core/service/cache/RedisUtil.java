@@ -1,8 +1,6 @@
 package com.newegg.core.service.cache;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.newegg.core.service.domain.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 public class RedisUtil {
 
     @Autowired
-    private RedisTemplate<Object,Object> redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
 
     public Boolean hasKey(String key) {

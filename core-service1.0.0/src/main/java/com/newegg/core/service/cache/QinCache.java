@@ -5,6 +5,8 @@ import com.newegg.core.service.service.ClockRecordsService;
 import com.newegg.core.service.service.qin.Leave;
 import com.newegg.core.service.service.qin.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 @Component
 public class QinCache {
     @Autowired
+    @Qualifier("entry")
     private Leave leaveChain;
     @Autowired
     private ClockRecordsService clockService;
@@ -135,13 +138,16 @@ public class QinCache {
 
     public void saveCache(CacheKey target, ArrayList records) {
         if(target==CacheKey.ClockRecord){
-            //TODO
+
+            redisUtil.set(CacheKey.ClockRecord.toString(),"1",records);
         }else if(target==CacheKey.GeneralRecord){
-            //TODO
+
+            redisUtil.set(CacheKey.GeneralRecord.toString(),"1",records);
         }
     }
 
     private void clearCache(CacheKey target, Query query) {
+
         //TODO
     }
 
@@ -157,6 +163,7 @@ public class QinCache {
         if(target==CacheKey.GeneralRecord){
             ArrayList<GeneralRecord> generalRecords=redisUtil.get(target.toString());
             ArrayList<GeneralRecord> returnList=new ArrayList<>();
+            //TODO 修改
             generalRecords.forEach(e->{
                 if(query.getRecordType().equals(e.getDocumentType())&&
                         (query.getStartTime().compareTo(e.getStartTime())==0)&&
@@ -195,7 +202,7 @@ public class QinCache {
      * @return
      */
     public Query getQueryCriteria() {
-        Query query= (Query) redisUtil.get(CacheKey.QqueryCriteria+"",1+"");//hk值用1
+        Query query= (Query) redisUtil.get(CacheKey.QueryCriteria+"",1+"");//hk值用1
         return query;
     }
 
@@ -204,7 +211,7 @@ public class QinCache {
      * @param query
      */
     public void saveQueryCriteria(Query query) {
-        redisUtil.set(CacheKey.QqueryCriteria+"",1+"",query);
+        redisUtil.set(CacheKey.QueryCriteria+"",1+"",query);
     }
 
     /**

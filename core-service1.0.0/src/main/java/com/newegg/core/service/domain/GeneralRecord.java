@@ -21,8 +21,6 @@ public class GeneralRecord extends Record{
     private String status;
     private String attachment;
 
-    private  Integer sumtime;
-
     private String dealType="待审批";
 
     private String problemReason;
@@ -32,7 +30,7 @@ public class GeneralRecord extends Record{
     public GeneralRecord() {
     }
 
-    public GeneralRecord(String id, String applicant, String applicantEnglish, String documentType, Date startTime, Date endTime, Integer hours, Date startPunchtime, Date endPunchtime, String shift, String status, String attachment, Integer sumtime, String dealType, String problemReason, String department) {
+    public GeneralRecord(String id, String applicant, String applicantEnglish, String documentType, Date startTime, Date endTime, Integer hours, Date startPunchtime, Date endPunchtime, String shift, String status, String attachment, String dealType, String problemReason, String department) {
         this.id = id;
         this.applicant = applicant;
         this.applicantEnglish = applicantEnglish;
@@ -45,7 +43,6 @@ public class GeneralRecord extends Record{
         this.shift = shift;
         this.status = status;
         this.attachment = attachment;
-        this.sumtime = sumtime;
         this.dealType = dealType;
         this.problemReason = problemReason;
         this.department = department;
@@ -147,14 +144,6 @@ public class GeneralRecord extends Record{
 
     public void setAttachment(String attachment) {
         this.attachment = attachment;
-    }
-
-    public Integer getSumtime() {
-        return sumtime;
-    }
-
-    public void setSumtime(Integer sumtime) {
-        this.sumtime = sumtime;
     }
 
     public String getDealType() {

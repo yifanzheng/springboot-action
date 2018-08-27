@@ -1,8 +1,6 @@
 package com.newegg.core.service.cache;
 
-import com.newegg.core.service.domain.ProblemRecord;
 import com.newegg.core.service.domain.Record;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,10 @@
 package com.newegg.core.service.controller;
 
 
-import com.newegg.core.service.cache.QinCache;
 import com.newegg.core.service.domain.ApprovalStatus;
 import com.newegg.core.service.domain.ClockRecord;
 import com.newegg.core.service.domain.Query;
-import com.newegg.core.service.repository.ClockRecordsRepo;
 import com.newegg.core.service.service.ClockRecordsService;
-import com.newegg.core.service.service.qin.Leave;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

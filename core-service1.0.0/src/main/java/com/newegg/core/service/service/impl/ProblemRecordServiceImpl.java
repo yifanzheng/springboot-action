@@ -13,6 +13,7 @@ import com.newegg.core.service.service.ClockRecordsService;
 import com.newegg.core.service.service.ProblemRecordService;
 import com.newegg.core.service.service.qin.Leave;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ProblemRecordServiceImpl implements ProblemRecordService {
     @Autowired
     private ClockRecordsService clockRecordsService;
     @Autowired
+    @Qualifier("entry")
     private Leave chain;
     @Autowired
     private QinCache qinCache;

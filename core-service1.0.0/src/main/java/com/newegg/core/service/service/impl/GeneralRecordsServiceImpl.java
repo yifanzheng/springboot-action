@@ -47,10 +47,11 @@ public class GeneralRecordsServiceImpl implements GeneralRecordsService {
      */
     @Override
     public List<GeneralRecord> getRecords(Query query) {
-        List<GeneralRecord> generalRecordList = generalRecordsRepo.getGeneralRecordsList(query);
+        ArrayList<GeneralRecord> generalRecordList = (ArrayList<GeneralRecord>) generalRecordsRepo.getGeneralRecordsList(query);
         for (GeneralRecord generalRecord : generalRecordList) {
             entry.process(generalRecord);
         }
+        qinCache.saveCache(CacheKey.GeneralRecord,generalRecordList);
         return generalRecordList;
     }
 
