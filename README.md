@@ -13,7 +13,7 @@
 - 根据项目来依赖，从而配置spring，需要什么配什么
 - 提供可视化的相关功能，方便监控，比如性能、应用的健康程度等
 - 简化了配置，不用再看过多的Xml
--为微服务SpringCloud铺路，SpringBoot可以整合各式各样的框架来构建为服务，比如dubbo、thrift等
+- 为微服务SpringCloud铺路，SpringBoot可以整合各式各样的框架来构建为服务，比如dubbo、thrift等
 
 ### SpringBoot使用场景
 
