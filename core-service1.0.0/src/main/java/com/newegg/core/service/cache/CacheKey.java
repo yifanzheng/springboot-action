@@ -11,5 +11,5 @@ public enum CacheKey {
     PretreatmentFail,
     SystemFail,
     Approved,
-    QueryCriteria
+    QqueryCriteria
 }

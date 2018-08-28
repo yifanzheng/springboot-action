@@ -2,7 +2,6 @@ package com.newegg.core.service.config;
 
 import com.newegg.core.service.service.qin.Leave;
 import com.newegg.core.service.service.qin.chain.*;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 public class ServiceChainConfig {
 
     @Bean
-    @Qualifier("entry")
     public Leave initLeaveServiceChain(){
         Leave l0=new Entry();
         Leave l1=new AnnualLeave();

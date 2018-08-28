@@ -1,13 +1,11 @@
 package com.newegg.core.service.service.qin;
 
 import com.newegg.core.service.domain.GeneralRecord;
-import org.springframework.stereotype.Component;
 
 /**
  * by:qin
  * 各种请假的抽象类
  */
-@Component
 public abstract class Leave {
     private Leave successor;
 

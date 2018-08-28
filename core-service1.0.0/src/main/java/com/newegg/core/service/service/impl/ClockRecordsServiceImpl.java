@@ -34,7 +34,7 @@ public class ClockRecordsServiceImpl implements ClockRecordsService {
     }
 
     @Override
-    public void pretreatmentApproval(Query query, List<ClockRecord> list) {
+    public void pretreatmentApproval(Query query, ArrayList<ClockRecord> list) {
         for(ClockRecord record:list){
             if(Objects.equals(record.getClockAattachment(),null)
                     ||Objects.equals("",record.getClockAattachment())){
@@ -53,8 +53,6 @@ public class ClockRecordsServiceImpl implements ClockRecordsService {
     @Override
     public List<ClockRecord> getRecords(Query query) {
         List<ClockRecord> clockRecordList = clockRecordsRepo.getClockRecordsList(query);
-        //执行预处理
-        pretreatmentApproval(query,clockRecordList);
         return clockRecordList;
     }
 

@@ -13,7 +13,7 @@ public interface ClockRecordsService {
 
     void approval(List<ApprovalStatus> approvalStatus);
 
-    void pretreatmentApproval(Query query, List<ClockRecord> list);
+    void pretreatmentApproval(Query query, ArrayList<ClockRecord> list);
 
     ClockRecord getRecord(String id);
 
