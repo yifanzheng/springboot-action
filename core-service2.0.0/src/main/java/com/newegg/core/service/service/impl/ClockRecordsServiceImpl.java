@@ -50,6 +50,11 @@ public class ClockRecordsServiceImpl implements ClockRecordsService {
     }
 
     @Override
+<<<<<<< HEAD:core-service1.0.0/src/main/java/com/newegg/core/service/service/impl/ClockRecordsServiceImpl.java
+    public List<ClockRecord> getRecords(Query query) {
+        List<ClockRecord> clockRecordList = clockRecordsRepo.getClockRecordsList(query);
+        return clockRecordList;
+=======
     public List<ClockRecord> getRecords(Query query, Page page) {
         ArrayList<ClockRecord> clockRecordList = null;
         if(query.getPage()==1){
@@ -77,6 +82,7 @@ public class ClockRecordsServiceImpl implements ClockRecordsService {
             if(!Objects.equals(e.getStatus(),approvalStatus))
                 returnList.remove(e);
         });
+>>>>>>> a42263d315a06cc0870010fa7c08f83323cc5b63:core-service2.0.0/src/main/java/com/newegg/core/service/service/impl/ClockRecordsServiceImpl.java
     }
 
     @Override

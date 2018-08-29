@@ -1,7 +1,17 @@
 package com.newegg.core.service.controller;
 
+<<<<<<< HEAD:core-service1.0.0/src/main/java/com/newegg/core/service/controller/ClockRecordsController.java
+
+import com.newegg.core.service.cache.QinCache;
+import com.newegg.core.service.domain.ApprovalStatus;
+import com.newegg.core.service.domain.ClockRecord;
+import com.newegg.core.service.domain.Query;
+import com.newegg.core.service.repository.ClockRecordsRepo;
+=======
 import com.newegg.core.service.domain.*;
+>>>>>>> a42263d315a06cc0870010fa7c08f83323cc5b63:core-service2.0.0/src/main/java/com/newegg/core/service/controller/ClockRecordsController.java
 import com.newegg.core.service.service.ClockRecordsService;
+import com.newegg.core.service.service.qin.Leave;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

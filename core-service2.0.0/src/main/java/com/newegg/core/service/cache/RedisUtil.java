@@ -2,7 +2,10 @@ package com.newegg.core.service.cache;
 
 
 import com.alibaba.fastjson.JSONObject;
+<<<<<<< HEAD:core-service1.0.0/src/main/java/com/newegg/core/service/cache/RedisUtil.java
+=======
 import com.newegg.core.service.domain.ProblemRecord;
+>>>>>>> a42263d315a06cc0870010fa7c08f83323cc5b63:core-service2.0.0/src/main/java/com/newegg/core/service/cache/RedisUtil.java
 import com.newegg.core.service.domain.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
