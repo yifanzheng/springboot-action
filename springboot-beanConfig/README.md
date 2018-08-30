@@ -86,9 +86,60 @@
 ```
 在没有使用`@PropertySource`注解指定加载的文件时，默认使用`application.properties`文件中的与实体对象的属性。
 `@PropertySources`注解优先级比较低，即使指定了加载的文件，但出现与`application.properties`相同的配置项时会被其覆盖。
+### 自定义`.yml`资源文件属性配置
+- 创建`user.yml`文件，进行属性配置
+```java
+#配置user对象的值
+demo:
+ user:
+  name: 魏婴
+  age: 12
+  desc: Hi all,my name is 魏无羡
+```
+- 注释`User.java`对象文件
+```java
+@Configuration
+@ConfigurationProperties(prefix = "demo.user") //前缀名注释必须有，不然会报错
+@PropertySource(value = "classpath:user.yml",encoding = "utf-8")
+public class User {
+    @Value("${name}")
+    private String name;
+
+    @Value("${age}")
+    private int age;
+
+    @Value("${desc}")
+    private String desc;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+}
+
+```
 ### 多环境配置（数据库配置，Redis配置，日志配置）
 
-`application-dev.properties`: 开发环境
+`application-dev.properties`: 开发环境  
 `application-prod.properties`: 生产环境
 
 springboot通过`application.roperties`文件，设置`spring.profiles.active`属性加载相应的文件，如：`spring.profiles.active=dev`。

@@ -3,10 +3,13 @@ package com.example.controller;
 import com.example.pojo.ResourceBean;
 import com.example.pojo.ResourceComponent;
 import com.example.pojo.ResourceConfig;
+import com.example.pojo.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.sound.midi.Soundbank;
 
 /**
  * 控制器
@@ -24,7 +27,10 @@ public class DemoController {
     private ResourceConfig resourceConfig;
 
     @Autowired
-    ResourceBean resourceBean;
+    private ResourceBean resourceBean;
+
+    @Autowired
+    private User user;
 
     @RequestMapping("/component")
     public ResourceComponent getResourceComponent() {
@@ -47,5 +53,12 @@ public class DemoController {
     @RequestMapping("/bean")
     public ResourceBean getResourceBean(){
         return resourceBean;
+    }
+
+    @RequestMapping("/user")
+    public User getUser(){
+        User bean = new User();
+        BeanUtils.copyProperties(user,bean);
+        return bean;
     }
 }
