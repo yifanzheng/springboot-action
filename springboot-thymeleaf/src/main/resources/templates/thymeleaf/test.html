@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+   <!-- <script th:src="@{/static/js/demo.js}"></script>-->
 </head>
 <body>
 <p th:text="${user.name}"></p>
 <p th:text="${user.age}"></p>
 <p th:text="${user.desc}"></p>
+<div>
+    姓名：<input th:id="${user.name}" th:name="${user.name}" th:value="${user.name}"><br>
+    年龄：<input th:value="${user.age}"><br>
+    介绍：<input th:value="${user.desc}"><br>
+    时间：<input th:value="${#dates.format(user.birthday,'yyyy-MM-dd')}">
+</div>
+<br>
+<div th:object="${user}">
+    姓名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"><br>
+    年龄：<input th:value="*{age}"><br>
+    介绍：<input th:value="*{desc}"><br>
+    时间：<input th:value="*{#dates.format(birthday,'yyyy-MM-dd')}">
+</div>
+<br>
+URL:<a th:href="@{http://www.imooc.com}">网站地址</a>
+<br>
+<form th:action="@{/th/postform}" th:object="${user}" th:method="post">
+    <input type="text" th:field="*{name}">
+    <input type="submit">
+</form>
+<br>
+<div th:if="${user.age}==18">十八岁的天空</div>
+<div th:if="${user.age} gt 18">你老了</div>
+<div th:if="${user.age} lt 18">你很年轻</div>
+<div th:if="${user.age} ge 18">大于等于</div>
+<div th:if="${user.age} le 18">小于等于</div>
+<br>
+<select>
+    <option>选择框</option>
+    <option th:selected="${user.name eq 'lee'}">lee</option>
+    <option th:selected="${user.name eq 'imooc'}">imooc</option>
+    <option th:selected="${user.name eq 'leeCx'}">leeCx</option>
+</select>
+<br>
+<table cellpadding="0" cellspacing="0" style="text-align: center" border="1px">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>描述</th>
+    </tr>
+
+    <tr th:each="user:${userList}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.desc}"></td>
+    </tr>
+</table>
+<div th:switch="${user.name}">
+    <p th:case="'魏婴'">大神</p>
+    <p th:case="#{roles.super}">超级管理员</p>
+</div>
 </body>
 </html>

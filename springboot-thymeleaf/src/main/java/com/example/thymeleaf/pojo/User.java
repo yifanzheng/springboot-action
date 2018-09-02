@@ -5,6 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.Date;
+
 /**
  * 实体类
  *
@@ -23,6 +25,8 @@ public class User {
 
     @Value("${desc}")
     private String desc;
+
+    private Date birthday;
 
     public String getName() {
         return name;
@@ -46,5 +50,13 @@ public class User {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }
