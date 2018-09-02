@@ -102,7 +102,7 @@ demo:
 @ConfigurationProperties(prefix = "demo.user") //前缀名注释必须有，不然会报错
 @PropertySource(value = "classpath:user.yml",encoding = "utf-8")
 public class User {
-    @Value("${name}")
+    @Value("${name}")//这个注释必须要
     private String name;
 
     @Value("${age}")
