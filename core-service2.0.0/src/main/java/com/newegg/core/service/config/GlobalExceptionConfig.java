@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-//@ControllerAdvice
-//@ResponseBody
+@ControllerAdvice
+@ResponseBody
 public class GlobalExceptionConfig {
 
     /**
