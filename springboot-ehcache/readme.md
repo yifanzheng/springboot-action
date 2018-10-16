@@ -64,7 +64,7 @@ timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒
 timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。
                    最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。  
 
-diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.   
+diskPersistent：是否缓存虚拟机重启期数据。   
 diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
 
 diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。  
