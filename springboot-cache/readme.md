@@ -161,7 +161,7 @@ public class DemoController {
     }
 }
 ```
-- 效果
+- 效果  
 第一次请求`/user/star3`时，方法被调用的同时也将数据存入了缓存，在控制台打印了“star3已被缓存”。
 ![cache](images/1.png)
 
