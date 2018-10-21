@@ -34,3 +34,12 @@
   spring-boot-starter:核心模块，包括自动配置支持、日志和yml
   spring-boot-starter:测试模块，包括Junit、mockito、Hamcrest
   ```
+### SpringBoot与SpringCloud的关系
+- SpringBoot其实是一个快速开发框架，能够帮助我们**快速整合第三方常用框架，完全采用注解化，简化xml配置，最终以java应用程序进行执行。**
+
+- SpringCloud目前是一套完整微服务解决框架，功能强大。如：注册中心，客户端调用工具，服务治理（负载均衡、断路器、分布式配置中心）。
+
+- SpringBoot Web组件默认集成SpringMVC；SpringCloud依赖于SprinGBoot实现微服务，使用SpringMVC编写微服务接口。
+
+##### SpringBoot只是一个快速开发框架，不是微服务框架！
+##### SpringBoot+SpringCloud实现微服务开发！（RPC远程通讯技术）
