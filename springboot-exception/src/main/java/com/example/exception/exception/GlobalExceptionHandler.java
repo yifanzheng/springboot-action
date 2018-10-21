@@ -4,12 +4,15 @@ import com.example.exception.pojo.JsonResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.Element;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -18,11 +21,10 @@ import java.util.Objects;
  * @author kevin
  * @date 2018-09-07 21:08
  **/
-//@RestControllerAdvice
-@ControllerAdvice
+@ControllerAdvice(basePackages = "com.example.exception.web")
 public class GlobalExceptionHandler {
 
-    public static final String ERROR_VIEW="errors";
+    public static final String ERROR_VIEW = "errors";
 
     /*@ExceptionHandler(value = ArithmeticException.class)
     public Object errorHandler(HttpServletRequest request, HttpServletResponse response,Exception e){
@@ -41,14 +43,14 @@ public class GlobalExceptionHandler {
     }*/
 
     @ExceptionHandler(Exception.class)
-    public Object errorHandler(HttpServletRequest request,HttpServletResponse response,Exception e){
+    public Object errorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
         e.printStackTrace();
-        if(isAjax(request)){
+        if (isAjax(request)) {
             return JsonResponse.errorException(e.getMessage());
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.addObject("exception",e);
-            modelAndView.addObject("url",request.getRequestURL());
+            modelAndView.addObject("exception", e);
+            modelAndView.addObject("url", request.getRequestURL());
             modelAndView.setViewName(ERROR_VIEW);
             return modelAndView;
         }
@@ -56,13 +58,23 @@ public class GlobalExceptionHandler {
 
     /**
      * 判断是否是ajax请求
+     *
      * @param request
      * @return
      */
     private boolean isAjax(HttpServletRequest request) {
-        return (request.getHeader("X-Requested-With")!=null
-                && Objects.equals(request.getHeader("X-Requested-With").toString(),"XMLHttpRequest"));
+        return (request.getHeader("X-Requested-With") != null
+                && Objects.equals(request.getHeader("X-Requested-With").toString(), "XMLHttpRequest"));
     }
 
+
+    @ExceptionHandler(value = RuntimeException.class)
+    @ResponseBody
+    public Map<String, Object> errorResult(Exception e) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("errorCode", "500");
+        map.put("errorMessage", e.getMessage());
+        return map;
+    }
 
 }
