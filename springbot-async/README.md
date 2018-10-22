@@ -1,5 +1,5 @@
 # springboot 使用@Async实现异步调用
-启动时在类加上@EnableAsync开启异步功能,需要执行异步方法上加入@Async。在方法上加上@Async之后，底层使用多线程技术。
+启动时在类加上`@EnableAsync`开启异步功能,需要执行异步方法上加入`@Async`。在方法上加上`@Async`之后，底层使用多线程技术。
 
 ### 案列
 ```java
