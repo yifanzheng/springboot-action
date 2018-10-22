@@ -32,6 +32,7 @@
   - *beforeInvocation*：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。
 
 ### 案列
+- 首先，在启动类上添加`@EnableCache`开启缓存功能，进行自动扫描。
 - 在pom.xml文件添加cache依赖
 ```java
 <dependency>
