@@ -30,6 +30,7 @@ public class DataSource1Configuration {
     @Bean(name = "datasource1")
     @ConfigurationProperties(prefix = "spring.datasource.resource1")
     public DataSource dataSource() {
+        
         return DataSourceBuilder.create().build();
     }
 
