@@ -19,6 +19,7 @@ public class ResourceBeanConfig {
     @Bean
     @ConfigurationProperties(prefix = "com.resource")
     public ResourceBean getResourceBean(){
+		
        return new ResourceBean();
     }
 }
