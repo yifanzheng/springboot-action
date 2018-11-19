@@ -1,0 +1,5 @@
+# 项目名称
+spring:
+  application:
+    name: spring-boot-admin-server
+
