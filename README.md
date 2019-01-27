@@ -32,7 +32,7 @@
   两大默认模块：
   ```java
   spring-boot-starter:核心模块，包括自动配置支持、日志和yml
-  spring-boot-starter:测试模块，包括Junit、mockito、Hamcrest
+  spring-boot-starter-test:测试模块，包括Junit、mockito、Hamcrest
   ```
 ### SpringBoot与SpringCloud的关系
 - SpringBoot其实是一个快速开发框架，能够帮助我们**快速整合第三方常用框架，完全采用注解化，简化xml配置，最终以java应用程序进行执行。**
