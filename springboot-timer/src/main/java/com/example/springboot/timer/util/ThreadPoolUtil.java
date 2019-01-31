@@ -20,8 +20,15 @@ public final class ThreadPoolUtil {
 
         }
 
-        private static SingelThreadPool getInstance() {
+        private ScheduledExecutorService getSchedule() {
 
+            return SCHEDULE_SERVICE;
+        }
+    }
+
+    private static class SingelThreadPoolHolder {
+
+        private static SingelThreadPool getInstance() {
             return new SingelThreadPool();
         }
     }
@@ -29,7 +36,7 @@ public final class ThreadPoolUtil {
 
     public static ScheduledExecutorService getScheduledExecutorService() {
 
-        return SingelThreadPool.getInstance().SCHEDULE_SERVICE;
+        return SingelThreadPoolHolder.getInstance().SCHEDULE_SERVICE;
     }
 
 
