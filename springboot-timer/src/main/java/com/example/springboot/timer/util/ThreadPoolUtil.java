@@ -10,13 +10,13 @@ import java.util.concurrent.ScheduledExecutorService;
 public final class ThreadPoolUtil {
 
 
-    private static class SingelThreadPool {
+    private static class SingleThreadPool {
 
-        private final ScheduledExecutorService SCHEDULE_SERVICE;
+        private final ScheduledExecutorService scheduleExecutor;
 
-        SingelThreadPool() {
+        SingleThreadPool() {
 
-            SCHEDULE_SERVICE = Executors.newScheduledThreadPool(3);
+            scheduleExecutor = Executors.newScheduledThreadPool(3);
 
         }
 
@@ -26,17 +26,14 @@ public final class ThreadPoolUtil {
         }
     }
 
-    private static class SingelThreadPoolHolder {
-
-        private static SingelThreadPool getInstance() {
-            return new SingelThreadPool();
-        }
+    private static class SingleThreadPoolHolder {
+        private static final SingleThreadPool INSTANCE = new SingleThreadPool();
     }
 
 
     public static ScheduledExecutorService getScheduledExecutorService() {
 
-        return SingelThreadPoolHolder.getInstance().SCHEDULE_SERVICE;
+        return SingelThreadPoolHolder.INSTANCE;
     }
 
 
