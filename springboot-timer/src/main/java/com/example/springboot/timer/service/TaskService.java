@@ -24,7 +24,7 @@ public class TaskService {
 
     public void startTask(Integer caseNumber) {
         // 定时线程
-        ScheduledExecutorService executorService = ThreadPoolUtil.getScheduledExecutorService();
+        ScheduledExecutorService executorService = ThreadPoolUtil.getInstance();
 
         // 5s后启动任务，并在上一次任务完成后推迟5s开始下一次任务
         Future<?> scheduledFuture = executorService

@@ -22,7 +22,7 @@ public final class ThreadPoolUtil {
 
         private ScheduledExecutorService getSchedule() {
 
-            return SCHEDULE_SERVICE;
+            return scheduleExecutor;
         }
     }
 
@@ -31,9 +31,9 @@ public final class ThreadPoolUtil {
     }
 
 
-    public static ScheduledExecutorService getScheduledExecutorService() {
+    public static ScheduledExecutorService getInstance() {
 
-        return SingelThreadPoolHolder.INSTANCE;
+        return SingleThreadPoolHolder.INSTANCE.getSchedule();
     }
 
 
