@@ -31,10 +31,9 @@
         <!--tomcat支持jsp-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>8.5.34</version>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>[8.5.40,)</version>
         </dependency>
-
     </dependencies>
 
 </project>
