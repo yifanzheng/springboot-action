@@ -1,7 +1,0 @@
-#配置user对象的值
-demo:
- user:
-  name: 魏婴
-  age: 12
-  desc: Hi all,my name is 魏无羡
-
