@@ -14,7 +14,7 @@
 - restart classloader（Restart 类加载器）：加载正在开发的 Class。
 
 
-### 使用方法
+### 配置工程
 
 - 在 pom.xml 文件中，添加项目 devtools 依赖
 
@@ -51,3 +51,4 @@ spring.devtools.restart.exclude=static/**,public/**,WEB-INF/**
 # restart.include.mapper=/mapper-[\\w-\\.]+jar
 # restart.include.pagehelper=/pagehelper-[\\w-\\.]+jar
 ```
+当热部署搭建完成后，程序只要启动一次即可，后面修改代码时，只需保存后便可以触发热部署机制，自动重启。
