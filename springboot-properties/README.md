@@ -1,15 +1,14 @@
-## Spring Boot 资源配置文件
+## Spring Boot 资源配置文件读取
 
-获取配置文件的自定义配置，以及如何多环境下的配置文件信息的获取
+在实际开发中，我们会遇到关于配置文件的读取，获取配置文件的自定义配置，以及如何多环境下的配置文件信息的获取。
 
-### 优先级
+### 配置读取优先级
 
 1. 命令行参数。
 2. 从 `java:comp/env` 得到的 JNDI 属性。
 3. 通过 `System.getProperties()` 获取的 Java 系统参数。
 4. 操作系统环境变量。
 5. `RandomValuePropertySource` 配置的 `random.*` 属性值。如 ${random.int}、${random.long}、${random.value}、${random.uuid} 等。
-
 6. JAR 包外部的 `application-{profile}.properties` 或 `application.yml` （带 spring.profile）配置文件。
 7. JAR 包内部的 `application-{profile}.properties` 或 `application.yml` （带 spring.profile）配置文件。 
 8. JAR 包外部的 `application.properties` 或 `application.yml`（不带 spring.profile）配置文件。
@@ -21,90 +20,180 @@
 
 注意：`application.properties` 文件的优先级高于 `application.yml` 文件的优先级。
 
+### 配置依赖项
 
-### 资源文件中的属性配置与映射到实体类
-
-首先在 pom.xml 文件中，加入依赖项。
+在 pom.xml 文件中，加入 `spring-boot-configuration-processor` 依赖项，用于读取配置值。
 
 ```xml
-<!--加入该依赖，才能用于读取配置值-->
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-configuration-processor</artifactId>
   <optional>true</optional>
 </dependency>
 ```
-- 在 `@Configuration` 注解的类上加上 `@ConfigurationProperties(prefix="前缀名")` 注解，可以使用 `@PropertySource` 注解指定加载的配置文件，不加时默认加载 `application.properties` 文件。
 
- ```java
-    @Configuration
-    @ConfigurationProperties(prefix = "com.resource")
-    //指定加载的资源文件
-    @PropertySource(value = "classpath:resource.properties") 
-    public class ResourceConfig {
-        private String name;
+### 属性配置与实体类的映射
 
-        private String website;
+- 方式一  
 
-        private String language;
+在 `@Configuration` 注解的类上加上 `@ConfigurationProperties(prefix="前缀名")` 注解，可以使用 `@PropertySource` 注解指定加载的配置文件，不加时默认加载 `application.properties` 文件
 
-        get和set方法...
-    }
-
-    注意：使用这种方式配置的类，在使用 @Autowired 注入时，不能直接return注入的对象，
-    它只是指向spring容器中resourceConfig对象资源的一个标识，可以通过这个标识返回该
-    对象中的值。
- ```
-- 使用`@Value`注解,直接映射实体类的各个属性
- ```java
-    @Component
-    @PropertySource(value = "classpath:resource.properties")
-    public class ResourceComponent {
-        @Value("${com.resource.name}")
-        private String name;
-
-        @Value("${com.resource.website}")
-        private String website;
-
-        @Value("${com.resource.language}")
-        private String language;
-
-        get和set方法...
-    }
-
- ```
-- 在方法上使用`@Bean`注解，配合以上注解使用
 ```java
-    @Configuration
-    @PropertySource(value = "classpath:resource.properties")
-    public class ResourceBeanConfig {
+/**
+ * AuthorConfig
+ *
+ * @author star
+ **/
+@Configuration
+@ConfigurationProperties(prefix = "author")
+@PropertySource(value = "classpath:author.properties") // 指定配置文件的位置
+public class AuthorConfig {
 
-        @Bean
-        @ConfigurationProperties(prefix = "com.resource")
-        public ResourceBean getResourceBean(){
-             return new ResourceBean();
-        }
+    private String name;
+
+    private String nickname;
+
+    private String intro;
+
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+}
 ```
-在没有使用`@PropertySource`注解指定加载的文件时，默认使用`application.properties`文件中的与实体对象的属性。
-`@PropertySources`注解优先级比较低，即使指定了加载的文件，但出现与`application.properties`相同的配置项时会被其覆盖。
-### 自定义`.yml`资源文件属性配置
-- 创建`user.yml`文件，进行属性配置
+注意：使用这种方式配置的类，在使用 @Autowired 注入时，不能直接 return 注入的对象，它只是指向 Spring 容器中对象资源的一个标识，可以通过这个标识返回该对象中的值。
+
+- 方式二  
+
+使用 `@Value` 注解，直接映射实体类的各个属性。
+
+ ```java
+**
+ * RandomConfig
+ *
+ * @author star
+ **/
+@Component
+public class RandomConfig {
+
+    @Value("${random.stringValue}")
+    private String stringValue;
+
+    @Value("${random.intNumber}")
+    private Integer intNumber;
+
+    @Value("${random.longNumber}")
+    private Long longNumber;
+
+    @Value("${random.number}")
+    private Integer number;
+
+    @Value("${random.rangeNumber}")
+    private Integer rangeNumber;
+
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String stringValue) {
+        this.stringValue = stringValue;
+    }
+
+    public Integer getIntNumber() {
+        return intNumber;
+    }
+
+    public void setIntNumber(Integer intNumber) {
+        this.intNumber = intNumber;
+    }
+
+    public Long getLongNumber() {
+        return longNumber;
+    }
+
+    public void setLongNumber(Long longNumber) {
+        this.longNumber = longNumber;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Integer getRangeNumber() {
+        return rangeNumber;
+    }
+
+    public void setRangeNumber(Integer rangeNumber) {
+        this.rangeNumber = rangeNumber;
+    }
+}}
+```
+
+- 方式三  
+
+在方法上使用 `@Bean` 注解，配合以上注解使用。
+
 ```java
-#配置user对象的值
+/**
+ * AuthorBeanConfig 使用 @Bean 注解的方式获取配置信息
+ *
+ * @author star
+ **/
+@Configuration
+@PropertySource(value = "classpath:author.properties")
+public class AuthorBeanConfig {
+
+    @Bean
+    @ConfigurationProperties(prefix = "author")
+    public AuthorBean getAuthorBean(){
+       return new AuthorBean();
+    }
+}
+```
+在没有使用 `@PropertySource` 注解指定加载的文件时，默认使用 `application.properties` 文件中与实体对象的属性相同的配置项。
+`@PropertySources` 注解优先级比较低，即使指定了加载的文件，但出现与 `application.properties` 文件相同的配置项时会被其覆盖。
+
+### 自定义 YAML 资源文件属性配置
+
+- 创建 `user.yml` 文件，进行属性配置
+
+```java
+# 配置 user 对象的值
 demo:
  user:
-  name: 魏婴
-  age: 12
-  desc: Hi all,my name is 魏无羡
+  name: star
+  age: 22
+  desc: good boy!
 ```
-- 注释`User.java`对象文件
+- 使用注解标记 `User.java` 对象文件
+
 ```java
+/**
+ * UserConfig
+ *
+ * @author star
+ **/
 @Configuration
-@ConfigurationProperties(prefix = "demo.user") //前缀名注释必须有，不然会报错
+@ConfigurationProperties(prefix = "demo.user") // 前缀名注释必须有，不然会报错
 @PropertySource(value = "classpath:user.yml",encoding = "utf-8")
 public class User {
-    @Value("${name}")//这个注释必须要
+    // @Value() 注解必须要
+    @Value("${name}")
     private String name;
 
     @Value("${age}")
@@ -139,20 +228,20 @@ public class User {
 }
 
 ```
-### 多环境配置（数据库配置，Redis配置，日志配置）
+### 多环境配置
 
 `application-dev.properties`: 开发环境  
 `application-prod.properties`: 生产环境
 
-springboot通过`application.roperties`文件，设置`spring.profiles.active`属性加载相应的文件，如：`spring.profiles.active=dev`。
+Spring Boot 通过 `application.roperties` 文件，设置 `spring.profiles.active` 属性加载相应的文件，如：`spring.profiles.active=dev`。
 
-注意：springboot根据环境激活配置文件的规则是，默认加载`application.properties`文件，当此文件配置了`spring.profiles.active=xxx`后，会加载`application-xxx.properties`文件中的配置项，并覆盖`application.properties`中相同的配置项。
+注意：Spring Boot 根据环境激活配置文件的规则是，默认加载 `application.properties` 文件，当此文件配置了 `spring.profiles.active=xxx` 后，会加载 `application-xxx.properties` 文件中的配置项，并覆盖 `application.properties` 中相同的配置项。
 
 ### 最后
 
-1. 使用`.yml`文件时，属性值和冒号中间必须要有空格。
-2. `.yml`文件在配置中文值时，读取不会出现乱码问题；`.properties`文件配置中文值，读取会出现乱码。
-因为springboot是以`iso-8859-1`的编码格式读取`.properties`文件。
+1. 使用 YAML 文件时，属性值和冒号中间必须要有空格。
+2. YAML 文件在配置中文值时，读取不会出现乱码问题；properties 文件配置中文值，读取会出现乱码。
+因为 Spring Boot 是以 `iso-8859-1` 的编码格式读取 properties 文件。
 
 
 

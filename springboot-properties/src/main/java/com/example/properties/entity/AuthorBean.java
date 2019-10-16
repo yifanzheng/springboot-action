@@ -1,10 +1,12 @@
 package com.example.properties.entity;
 
 /**
- * @author kevin
- * @date 2018-08-26 15:42
+ * AuthorBean
+ *
+ * @author star
  **/
-public class ResourceBean {
+public class AuthorBean {
+
     private String name;
 
     private String website;
