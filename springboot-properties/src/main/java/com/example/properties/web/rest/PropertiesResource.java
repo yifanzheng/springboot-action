@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author star
  **/
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/config")
 public class PropertiesResource {
 
     @Autowired
@@ -35,12 +35,12 @@ public class PropertiesResource {
     @Autowired
     private UserConfig userConfig;
 
-    @GetMapping("/randomConfig")
+    @GetMapping("/random")
     public ResponseEntity<RandomConfig> getRandomConfig() {
         return ResponseEntity.ok(randomConfig);
     }
 
-    @GetMapping("/config")
+    @GetMapping("/author")
     public ResponseEntity<Author> getAuthorConfig() {
         Author author = new Author();
         BeanUtils.copyProperties(authorConfig, author);

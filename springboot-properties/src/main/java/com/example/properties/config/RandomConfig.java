@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class RandomConfig {
 
-    @Value("${random.stringValue}")
+    @Value("${rand.stringValue}")
     private String stringValue;
 
-    @Value("${random.intNumber}")
+    @Value("${rand.intNumber}")
     private Integer intNumber;
 
-    @Value("${random.longNumber}")
+    @Value("${rand.longNumber}")
     private Long longNumber;
 
-    @Value("${random.number}")
+    @Value("${rand.number}")
     private Integer number;
 
-    @Value("${random.rangeNumber}")
+    @Value("${rand.rangeNumber}")
     private Integer rangeNumber;
 
     public String getStringValue() {
