@@ -6,6 +6,10 @@
 
 - [springboot-helloworld: Spring Boot 的一个 Hello World 示例](springboot-helloworld)
 
+## 定制 Banner 示例
+
+- [springboot-banner](springboot-banner): Spring Boot 定制 Banner 示例
+
 ## 热部署示例
 
 - [springboot-devtools](springboot-devtools): Spring Boot 实现热部署
@@ -16,8 +20,8 @@
 
 ## 数据库存储相关示例
 
-- [springboot-jdbctemplate](springboot-jdbctemplate): Spring Boot 集成 JdbcTemplate 操作数据库【更新中...】
 - [springboot-c3p0](springboot-c3p0): Spring Boot 集成 C3P0 数据库连接池
+- [springboot-jdbctemplate](springboot-jdbctemplate): Spring Boot 集成 JdbcTemplate 操作数据库【更新中...】
 - [springboot-multidatasource-jdbctemplate](springboot-multidatasource-jdbctemplate): Spring Boot 集成 JdbcTemplate 实现多数据源配置【更新中...】
 - [springboot-jpa](springboot-jpa): Spring Boot 集成 JPA 操作数据库【更新中...】
 - [sprintboot-multidatasource-jpa](sprintboot-multidatasource-jpa): Spring Boot 集成 JPA 实现多数据源配置【更新中...】

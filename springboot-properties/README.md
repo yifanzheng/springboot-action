@@ -79,7 +79,7 @@ public class AuthorConfig {
 使用 `@Value` 注解，直接映射实体类的各个属性。
 
  ```java
-**
+/*
  * RandomConfig
  *
  * @author star
@@ -141,7 +141,7 @@ public class RandomConfig {
     public void setRangeNumber(Integer rangeNumber) {
         this.rangeNumber = rangeNumber;
     }
-}}
+}
 ```
 
 - 方式三  
