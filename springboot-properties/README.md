@@ -34,7 +34,29 @@
 
 ### 属性配置与实体类的映射
 
-- 方式一  
+- application.properties
+
+```properties
+# 32 位随机字符串
+rand.stringValue = ${random.value}
+# 随机的 int 类型数字
+rand.intNumber = ${random.int}
+# 随机的 long 类型数字
+rand.longNumber = ${random.long}
+# 100 以内的随机int类型
+rand.number = ${random.int(100)}
+# 0-100 范围内的随机int类型
+rand.rangeNumber = ${random.int[0,100]}
+```
+- author.properties
+
+```properties
+author.name = yifanzheng
+author.nickname = star
+author.intro = good boy!
+```
+
+**方式一**  
 
 在 `@Configuration` 注解的类上加上 `@ConfigurationProperties(prefix="前缀名")` 注解，可以使用 `@PropertySource` 注解指定加载的配置文件，不加时默认加载 `application.properties` 文件
 
@@ -74,7 +96,7 @@ public class AuthorConfig {
 ```
 注意：使用这种方式配置的类，在使用 @Autowired 注入时，不能直接 return 注入的对象，它只是指向 Spring 容器中对象资源的一个标识，可以通过这个标识返回该对象中的值。
 
-- 方式二  
+**方式二** 
 
 使用 `@Value` 注解，直接映射实体类的各个属性。
 
@@ -144,7 +166,7 @@ public class RandomConfig {
 }
 ```
 
-- 方式三  
+**方式三**  
 
 在方法上使用 `@Bean` 注解，配合以上注解使用。
 

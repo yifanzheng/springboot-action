@@ -2,11 +2,10 @@
 
 本示例使用 C3P0 + DbUtils + SQLServer 进行整合来操作数据库。
 
-### 配置 C3P0 参数
+### 配置 C3P0 信息
 
-```java
-# SQLServer 数据库
-
+```properties
+# SQLServer 数据库配置信息
 c3p0.jdbcUrl=jdbc:sqlserver://localhost:1433;DatabaseName=game
 c3p0.user=gm
 c3p0.password=root
@@ -27,7 +26,7 @@ c3p0.testConnectionOnCheckout=false
 ```
 ### 引入 C3P0 和 SQLServer 依赖
 
-```java
+```xml
 <dependency>
     <groupId>c3p0</groupId>
     <artifactId>c3p0</artifactId>
