@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class UserRepository {
 
     @Autowired
-    @Qualifier("JdbcTemplateTwo")
+    @Qualifier("JdbcTemplateOne")
     private JdbcTemplate jdbcTemplate;
 
     public int insertUser(User user) {
