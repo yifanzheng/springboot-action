@@ -34,7 +34,7 @@ spring.datasource.druid.one.password=root
 spring.datasource.druid.two.driver-class-name=com.mysql.jdbc.Driver
 spring.datasource.druid.two.url=jdbc:mysql://localhost:3306/product?useUnicode=true&characterEncoding=utf-8
 spring.datasource.druid.two.username=root
-spring.datasource.druid.two.password=rootm
+spring.datasource.druid.two.password=root
 ```
 
 ### 创建 DataSource 和 JdbcTemplate
@@ -59,7 +59,6 @@ public class DataSourceOneConfig {
     public JdbcTemplate jdbcTemplate(@Qualifier("DataSourceOne") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
-
 }
 ```
 
@@ -82,4 +81,86 @@ public class DataSourceTwoConfig {
 }
 ```
 
-最后，详细代码可以查看 Demo。
+### 编写 DAO 和 Service
+
+上面的配置工作完成后，接下来编写数据库操作的 DAO 类和 Service 类。
+
+**数据源一**
+
+- 编写 DAO 类
+
+```java
+@Repository
+public class UserRepository {
+
+    @Autowired
+    @Qualifier("JdbcTemplateOne") // 由于是多数据源，在注入 JdbcTemplate 时，需指明是哪个数据源的。
+    private JdbcTemplate jdbcTemplate;
+
+    public int insertUser(User user) {
+        String sql = "INSERT INTO user(username, password) VALUES(?,?)";
+        int count = jdbcTemplate.update(sql, user.getUsername(), user.getPassword());
+        return count;
+
+    }
+}
+```
+
+- 编写 Service 类
+
+```java
+@Service
+public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public void insertUser(User user){
+        userRepository.insertUser(user);
+        logger.info("Insert user success");
+    }
+}
+```
+
+**数据源二**
+
+- 编写 DAO 类
+
+```java
+@Repository
+public class ProductRepository {
+
+    @Autowired
+    @Qualifier("JdbcTemplateTwo")
+    private JdbcTemplate jdbcTemplate;
+
+    public Integer insertProduct(Product product) {
+        String sql = "INSERT INTO product(product_name, price, address) VALUES(?,?,?)";
+        int count = jdbcTemplate.update(sql, product.getProductName(), product.getPrice(), product.getAddress());
+        return count;
+
+    }
+
+}
+```
+
+- 编写 Service 类
+
+```java
+@Service
+public class ProductService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public void insertProduct(Product product) {
+        productRepository.insertProduct(product);
+        logger.info("Insert product success");
+    }
+}
+```
+
+最后，详细代码可以查看本示例的 Demo。
