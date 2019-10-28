@@ -8,7 +8,8 @@ import javax.persistence.*;
  * @author star
  */
 @Entity
-public class People extends AbstractAuditor {
+@Table(name = "people")
+public class People extends AbstractAuditingEntity {
 
     private static final long serialVersionUID = -2189163594057781698L;
 

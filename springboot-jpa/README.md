@@ -18,7 +18,7 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.open-in-view=false
 ```
 
-### 配置 JPA
+### 使用 JPA 配置数据源
 
 ```java
 @Configuration
@@ -31,13 +31,12 @@ public class DataSourceConfig {
 }
 ```
 
-### 创建映射实体类
+### 创建抽象审计类
 
 ```java
-/** 审计类 */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractAuditor implements Serializable {
+public abstract class AbstractAuditingEntity implements Serializable {
 
    private static final long serialVersionUID = -8636810082784692918L;
 
@@ -65,9 +64,13 @@ public abstract class AbstractAuditor implements Serializable {
       this.lastModifiedDate = lastModifiedDate;
    }
 }
+```
 
+### 创建映射实体类
 
+```java
 @Entity
+@Table(name = "people")
 public class People extends AbstractAuditor {
 
     private static final long serialVersionUID = -2189163594057781698L;
@@ -113,6 +116,27 @@ public class People extends AbstractAuditor {
 ```java
 public interface PeopleRepository extends JpaRepository<People, Long> {
 
+}
+```
+
+### 编写 Service 相关类
+
+调用 PeopleRepository 类相关方法，进行数据库操作。
+
+```java
+@Service
+public class PeopleService {
+
+    @Autowired
+    private PeopleRepository peopleRepository;
+
+    @Autowired
+    private PeopleMapper peopleMapper;
+
+    public void savePeople(PeopleDTO dto) {
+        People people = peopleMapper.convertToPeople(dto);
+        peopleRepository.save(people);
+    }
 }
 ```
 

@@ -14,7 +14,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractAuditor implements Serializable {
+public abstract class AbstractAuditingEntity implements Serializable {
 
    private static final long serialVersionUID = -8636810082784692918L;
 
