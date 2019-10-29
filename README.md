@@ -24,8 +24,8 @@
 - [springboot-jdbctemplate](springboot-jdbctemplate): Spring Boot 集成 Druid 和 JdbcTemplate 操作数据库
 - [springboot-multidatasource-jdbctemplate](springboot-multidatasource-jdbctemplate): Spring Boot 集成 JdbcTemplate 实现多数据源配置
 - [springboot-jpa](springboot-jpa): Spring Boot 集成 JPA 操作数据库
-- [sprintboot-multidatasource-jpa](sprintboot-multidatasource-jpa): Spring Boot 集成 JPA 实现多数据源配置【更新中...】
-- [springboot-mybatis](springboot-mybatis): Spring Boot 集成 MyBatis 操作数据库【更新中...】
+- [sprintboot-multidatasource-jpa](sprintboot-multidatasource-jpa): Spring Boot 集成 JPA 实现多数据源配置
+- [springboot-mybatis](springboot-mybatis): Spring Boot 集成 MyBatis 操作数据库
 - [springboot-multidatasource-mybatis-annotation](springboot-multidatasource-mybatis-annotation): Spring Boot 集成 MyBatis（注解版） 实现多数据源配置【更新中...】
 
 ## 数据缓存相关示例 
