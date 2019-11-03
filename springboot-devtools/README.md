@@ -51,6 +51,7 @@ spring.devtools.restart.exclude=static/**,public/**,WEB-INF/**
 当热部署搭建完成后，程序只要启动一次即可，后面修改代码时，只需保存后便可以触发热部署机制，自动重启服务。
 
 ### 设置 IDEA 环境自动编译 
+
 在使用 IDEA 编译器时，需要设置自动编译。
 
 - 在编译器选项中勾选 `Build project automatically` 选项

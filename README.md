@@ -4,7 +4,7 @@
 
 ## Hello World 示例
 
-- [springboot-helloworld: Spring Boot 的一个 Hello World 示例](springboot-helloworld)
+- [springboot-helloworld](springboot-helloworld): Spring Boot 的一个 Hello World 示例
 
 ## 定制 Banner 示例
 
@@ -25,8 +25,10 @@
 - [springboot-multidatasource-jdbctemplate](springboot-multidatasource-jdbctemplate): Spring Boot 集成 JdbcTemplate 实现多数据源配置
 - [springboot-jpa](springboot-jpa): Spring Boot 集成 JPA 操作数据库
 - [sprintboot-multidatasource-jpa](sprintboot-multidatasource-jpa): Spring Boot 集成 JPA 实现多数据源配置
-- [springboot-mybatis](springboot-mybatis): Spring Boot 集成 MyBatis 操作数据库
-- [springboot-multidatasource-mybatis-annotation](springboot-multidatasource-mybatis-annotation): Spring Boot 集成 MyBatis（注解版） 实现多数据源配置【更新中...】
+- [springboot-mybatis-xml](springboot-mybatis-xml): Spring Boot 集成 MyBatis （XML 方式）和 pagehelper 操作数据库
+- [springboot-multidatasource-mybatis-xml](springboot-multidatasource-mybatis-xml): Spring Boot 集成 MyBatis （XML 方式）实现多数据源配置
+- [springboot-mybatis-annotation](springboot-mybatis-annotation): Spring Boot 集成 MyBatis （注解方式）操作数据库
+- [springboot-multidatasource-mybatis-annotation](springboot-multidatasource-mybatis-annotation): Spring Boot 集成 MyBatis（注解方式） 实现多数据源配置
 
 ## 数据缓存相关示例 
 
