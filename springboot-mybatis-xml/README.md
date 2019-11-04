@@ -1,23 +1,24 @@
-## Spring Boot 集成 Mybatis 和 pagehelper 分页插件
+## Spring Boot 集成 Mybatis 和 PageHelper 分页插件
 
-### 项目依赖
+MyBatis 是一款优秀的持久层框架，它对 JDBC 的操作数据库的过程进行封装，支持定制化 SQL、存储过程以及高级映射，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJO（Plain Old Java Objects，普通的 Java 对象）映射成数据库中的记录。
 
-```java
-<!--mybatis依赖-->
+通俗地讲，MyBatis 就是我们使用 Java 程序操作数据库时的一种工具，可以简化我们使用 JDBC 时的很多操作，而且还简化了数据库记录与 POJO 之间的映射方式。
+
+### 添加相关依赖
+
+**MyBatis 依赖**
+
+```xml
 <dependency>
     <groupId>org.mybatis.spring.boot</groupId>
     <artifactId>mybatis-spring-boot-starter</artifactId>
     <version>1.3.1</version>
 </dependency>
+```
 
-<!--mapper依赖-->
-<dependency>
-    <groupId>tk.mybatis</groupId>
-    <artifactId>mapper-spring-boot-starter</artifactId>
-    <version>2.0.0</version>
-</dependency>
+**PageHelper 分页插件依赖**
 
-<!--pagehelper分页插件-->
+```xml
 <dependency>
     <groupId>com.github.pagehelper</groupId>
     <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -25,184 +26,124 @@
 </dependency>
 ```
 
-### 集成 MyBatis Generator
+### 配置数据源信息
 
-Mybatis Geneator 详解:
-><http://blog.csdn.net/isea533/article/details/42102297>
-##### 1. 在项目的根目录下添加 generatorConfig.xml 文件，并引入逆向工程核心依赖
-   - generatorConfig.xml文件信息
-```java
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration
-        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
-<generatorConfiguration>
-    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
-        <property name="beginningDelimiter" value="`"/>
-        <property name="endingDelimiter" value="`"/>
-
-        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.example.mybatis.utils.MyMapper"/>
-        </plugin>
-        
-        <!-- 数据库连接地址-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/game"
-                        userId="root"
-                        password="root">
-        </jdbcConnection>
-
-        <!-- 对于生成的pojo所在包 -->
-        <javaModelGenerator targetPackage="com.example.mybatis.entity" targetProject="src/main/java"/>
-
-		<!-- 对于生成的mapper所在目录 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
-
-		<!-- 配置mapper对应的java映射 -->
-        <javaClientGenerator targetPackage="com.example.mybatis.mapper" targetProject="src/main/java"
-                             type="XMLMAPPER"/>
-
-        <!--数据库中的表名-->
-		<table tableName="student"></table>
-		 
-    </context>
-</generatorConfiguration>
-```
- - 在pom.xml中添加逆向工程核心依赖
-```java
-<!--逆向工程核心依赖-->
-<dependency>
-    <groupId>org.mybatis.generator</groupId>
-    <artifactId>mybatis-generator-core</artifactId>
-    <version>1.3.2</version>
-    <scope>compile</scope>
-    <optional>true</optional>
-</dependency>
-```
-### 根据配置的 generatorConfig.xml 生成通用Mapper
-- 启动以下程序，生成相关Mapper
-```java
-public class GeneratorDisplay {
-
-    public void generator() throws Exception {
-        List<String> warnings = new ArrayList<>();
-
-        // 创建逆向工程配置文件
-        File configFile = new File("generatorConfig.xml");
-        // 配置解析器
-        ConfigurationParser parser = new ConfigurationParser(warnings);
-        // 解析配置文件
-        Configuration configuration = parser.parseConfiguration(configFile);
-        DefaultShellCallback shellCallback = new DefaultShellCallback(true);
-        MyBatisGenerator generator = new MyBatisGenerator(configuration, shellCallback, warnings);
-        generator.generate(null);
-
-
-    }
-
-    public static void main(String[] args) {
-        try {
-            new GeneratorDisplay().generator();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-```
-### application.properties 配置
-```java
-# 数据库配置
-spring.datasource.url=jdbc:mysql://localhost:3306/game
+```properties
+# 数据源配置
+spring.datasource.url=jdbc:mysql://localhost:3306/game?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
 spring.datasource.username=root
 spring.datasource.password=root
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
-# 配置数据源，使用阿里巴巴的druid数据库连接池
+# 配置数据源，使用阿里巴巴的 druid 数据库连接池
 spring.datasource.druid.initial-size=1
 spring.datasource.druid.min-idle=1
 spring.datasource.druid.max-active=20
 spring.datasource.druid.test-on-borrow=true
 spring.datasource.druid.stat-view-servlet.allow=true
+```
 
-# 通用 Mapper 配置
-mapper.mappers=com.example.mybatis.utils.MyMapper
-mapper.not-empty=false
-mapper.identity=MYSQL
+### 配置 MyBatis 与 PageHelper 信息
 
-# pagehelper分页
+```properties
+# mybatis 配置
+mybatis.config-location=classpath:mybatis/mybatis-config.xml
+mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
+mybatis.type-aliases-package=com.example.mybatis.entity
+
+# pagehelper 分页
 pagehelper.helperDialect=mysql
 pagehelper.reasonable=true
 pagehelper.supportMethodsArguments=true
 pagehelper.params=count=countSql
-
-# mybatis 配置
-mybatis.type-aliases-package=com.example.mybatis.entity
-mybatis.mapper-locations=classpath:mapper/*.xml  
 ```
-### 使用@MapperScan注解指定扫描的Mapper
-**注意**：这里要导入 `tk.mybatis.spring.annotation.*` 下的`MapperScan`，不要导入`org.mybatis.spring.annotation.*` 下的，否则会报错。
-```java
-@SpringBootApplication
-@MapperScan(basePackages = "com.example.mybatis.mapper")
-public class DruidApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DruidApplication.class, args);
-	}
+### 创建 Mapper 类与对应的 XML 文件
+
+Mapper 类是一个接口，它的实现类不是一个 JAVA 类，而是一个与之对应的 XML 文件。Mapper 类中声明的方法对应 XML 文件中的一段 SQL 语句 。 
+
+**Mapper 类**
+
+```java
+public interface StudentMapper {
+
+    Student selectById(Integer id);
+
+    List<Student> selectAll();
+
+    void updateStudent(Student student);
+
+    void insertStudent(Student student);
+
+    void deleteStudent(Integer id);
+
 }
 ```
 
-### 自定义Mapper
-- 自定义配置mapper.xml文件，手写sql语句
-```java
+**XML 文件**
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.mapper.StudentMapper">
     <resultMap id="BaseResultMap" type="com.example.mybatis.entity.Student">
-        <!--WARNING - @mbg.generated-->
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="chinese" jdbcType="REAL" property="chinese"/>
-        <result column="english" jdbcType="REAL" property="english"/>
-        <result column="math" jdbcType="REAL" property="math"/>
-        <result column="gender" jdbcType="CHAR" property="gender"/>
+        <result column="id" property="id" javaType="java.lang.Integer"/>
+        <result column="name" property="name" javaType="java.lang.String"/>
+        <result column="age" property="age" javaType="java.lang.Integer"/>
+        <result column="gender"  property="gender" javaType="com.example.mybatis.constant.GenderEnum"/>
     </resultMap>
-    <!--根据id查询-->
-    <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-     SELECT name,math,gender FROM student WHERE id = #{id,jdbcType=INTEGER}
+
+    <sql id="BaseColumnList" >
+        id, name, age, gender
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM student
+        WHERE id = #{id}
     </select>
 
-    <!-- 查询所有记录-->
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM  student
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM student
     </select>
+
+    <insert id="insertStudent">
+       INSERT INTO student (
+           name,
+           age,
+           gender
+        ) VALUES (
+          #{name},
+          #{age},
+          #{gender}
+        )
+    </insert>
+
+    <update id="updateStudent">
+        UPDATE student
+        SET 
+         <if test="name != null || name != ''">name = #{name},</if>
+         <if test="age != null">age = #{age},</if>
+         <if test="gender != null">gender = #{gender}</if>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteStudent">
+        DELETE FROM student WHERE id = #{id}
+    </delete>
+
 </mapper>
 ```
-- 创建mapper类，要与mapper配置文件中的namespace的名字对应
-```java
 
-/**
- * 自定义mapper
- * 注意：方法名（queryById）要与StudentMappeCustom.xml文件中的id对应
- * @author kevin
- **/
-public interface StudentMapperCustom {
+其中 namespace 指定了该 XML 文件对应的 Mapper 类。resultMap 的标签，定义的是我们 SQL 查询的字段与实体类之间的映射关系。
 
-    /**
-     * 根据id查询记录
-     * @param id
-     * @return
-     */
-    Student queryById(Integer id);
+### 参考
 
-    /**
-     * 查询所有记录
-     * @return
-     */
-    List<Student> selectAll();
-}
-```
+MyBatis 中文官网：[http://www.mybatis.cn/](http://www.mybatis.cn/)
 
+PageHelper 官网：[https://pagehelper.github.io/](https://pagehelper.github.io/)
 
 
