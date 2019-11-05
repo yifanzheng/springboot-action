@@ -58,7 +58,7 @@ pagehelper.supportMethodsArguments=true
 pagehelper.params=count=countSql
 ```
 
-### 创建 Mapper 类与对应的 XML 文件
+### Mapper 映射配置
 
 Mapper 类是一个接口，它的实现类不是一个 JAVA 类，而是一个与之对应的 XML 文件。Mapper 类中声明的方法对应 XML 文件中的一段 SQL 语句 。 
 
@@ -80,7 +80,7 @@ public interface StudentMapper {
 }
 ```
 
-**XML 文件**
+**Mapper 映射的 XML 文件**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -139,6 +139,50 @@ public interface StudentMapper {
 ```
 
 其中 namespace 指定了该 XML 文件对应的 Mapper 类。resultMap 的标签，定义的是我们 SQL 查询的字段与实体类之间的映射关系。
+
+### 编写 Service 类
+
+```java
+@Service
+public class StudentService {
+
+    @Autowired
+    private StudentMapper studentMapper;
+
+    public Student getStudent(Integer id) {
+        Student student = studentMapper.selectById(id);
+
+        return student;
+    }
+
+    public List<Student> listStudent(Integer pageNum, Integer pageSize) {
+        // 如果 pageSize 为空，默认返回 10 条数据
+        if (pageSize == null) {
+            pageSize = 10;
+        }
+        // 分页
+        Page<Student> studentPage = PageHelper.startPage(pageNum, pageSize)
+                .doSelectPage(() -> studentMapper.selectAll());
+        List<Student> students = studentPage.getResult();
+
+        return students;
+    }
+
+    public void saveStudent(Student student) {
+        studentMapper.insertStudent(student);
+    }
+
+    public void updateStudent(Student student) {
+        studentMapper.updateStudent(student);
+    }
+
+    public void deleteStudent(Integer id) {
+        studentMapper.deleteStudent(id);
+    }
+}
+```
+
+最后， 详细代码可以查看本示例的 Demo。
 
 ### 参考
 
