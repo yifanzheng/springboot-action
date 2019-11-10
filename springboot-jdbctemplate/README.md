@@ -27,6 +27,8 @@
 
 **添加配置信息**
 
+- application.properties
+
 ```properties
 # 数据源
 spring.datasource.druid.driver-class-name=com.mysql.jdbc.Driver

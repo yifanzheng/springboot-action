@@ -4,6 +4,8 @@
 
 ### 配置 C3P0 信息
 
+- application.properties
+
 ```properties
 # SQLServer 数据库配置信息
 c3p0.jdbcUrl=jdbc:sqlserver://localhost:1433;DatabaseName=game

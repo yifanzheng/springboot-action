@@ -1,6 +1,5 @@
 ## Spring Boot 集成 MyBatis（XML 方式）实现多数据源配置
 
-
 ### 添加相关依赖
 
 ```xml
@@ -12,6 +11,8 @@
 ```
 
 ### 配置数据源信息
+
+- application.properties
 
 ```properties
 # 数据源一
@@ -29,7 +30,7 @@ spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver
 
 ### 配置多数据源
 
-集成 Mybatis 配置数据源步骤如下：
+集成 MyBatis 配置数据源步骤如下：
 
 - 创建数据源 `Datasource`
 - 创建 Session 会话工厂 `SqlSessionFactroy`
@@ -112,7 +113,7 @@ public class DataSourceSecondaryConfig {
     }
 }
 ```
-以上配置完成之后，集成 Mybatis 多数据源配置就已经完成了，接下来就可以操作数据啦！
+以上配置完成之后，集成 MyBatis 多数据源配置就已经完成了，接下来就可以操作数据啦！
 
 最后，详细代码可以查看本示例的 Demo。
 

@@ -3,6 +3,15 @@ Jpa (Java Persistence API) 是 Sun 官方提出的 Java 持久化规范。它为
 
 下面我们来看看，Spring Boot 怎样集成 JPA。 
 
+### 添加 JPA 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+```
+
 ### 配置数据源信息
 
 - application.properties

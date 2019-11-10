@@ -1,16 +1,15 @@
-package com.example.mybatis.domain;
+package com.example.mybatis.entity;
 
 /**
- * 实体类
+ * User
  *
- * @author kevin
- * @date 2018-10-22 10:58
+ * @author star
  **/
-public class Users {
+public class User {
 
     private Integer id;
 
-    private String name;
+    private String username;
 
     private String password;
 
@@ -22,12 +21,12 @@ public class Users {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

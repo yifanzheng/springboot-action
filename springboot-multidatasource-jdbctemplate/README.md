@@ -23,6 +23,8 @@
 
 ### 配置数据源信息
 
+- application.properties
+
 ```properties
 # 数据源一
 spring.datasource.druid.one.driver-class-name=com.mysql.jdbc.Driver

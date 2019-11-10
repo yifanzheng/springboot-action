@@ -28,6 +28,8 @@ MyBatis 是一款优秀的持久层框架，它对 JDBC 的操作数据库的过
 
 ### 配置数据源信息
 
+- application.properties
+
 ```properties
 # 数据源配置
 spring.datasource.url=jdbc:mysql://localhost:3306/game?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8

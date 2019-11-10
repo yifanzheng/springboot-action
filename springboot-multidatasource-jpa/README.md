@@ -1,6 +1,17 @@
 ## Spring Boot 集成 JPA 实现多数据源配置
 
+### 添加 JPA 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+```
+
 ### 配置数据源信息
+
+- application.properties
 
 ```properties
 # 数据源一
