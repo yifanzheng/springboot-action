@@ -1,4 +1,4 @@
-## Spring B8oot 集成 JPA 实现多数据源配置
+## Spring Boot 集成 JPA 实现多数据源配置
 
 ### 配置数据源信息
 

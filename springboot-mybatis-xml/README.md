@@ -1,4 +1,4 @@
-## Spring Boot 集成 Mybatis 和 PageHelper 分页插件
+## Spring Boot 集成 Mybatis（XML 方式）和 PageHelper 分页插件
 
 MyBatis 是一款优秀的持久层框架，它对 JDBC 的操作数据库的过程进行封装，支持定制化 SQL、存储过程以及高级映射，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJO（Plain Old Java Objects，普通的 Java 对象）映射成数据库中的记录。
 

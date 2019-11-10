@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.secondary.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.example.mybatis.entity.Product">
+        <result column="id" property="id" javaType="java.lang.Integer"/>
+        <result column="product_name" property="productName" javaType="java.lang.String"/>
+        <result column="price" property="price" javaType="java.lang.Integer"/>
+        <result column="address" property="address" javaType="java.lang.String"/>
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id, product_name, price, address
+    </sql>
+
+    <select id="findAllProduct" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM product
+    </select>
+
+    <insert id="insertProduct">
+        INSERT INTO product (
+          product_name,
+          price,
+          address
+        ) VALUES (
+            #{productName},
+            #{price},
+            #{address}
+        )
+    </insert>
+</mapper>

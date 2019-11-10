@@ -1,4 +1,4 @@
-package com.example.mybatis.mapper;
+package com.example.mybatis.mapper.primary;
 
 import com.example.mybatis.entity.Student;
 

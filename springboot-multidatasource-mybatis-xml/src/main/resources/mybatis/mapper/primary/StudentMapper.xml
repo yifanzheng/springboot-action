@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mybatis.mapper.StudentMapper">
+<mapper namespace="com.example.mybatis.mapper.primary.StudentMapper">
     <resultMap id="BaseResultMap" type="com.example.mybatis.entity.Student">
         <result column="id" property="id" javaType="java.lang.Integer"/>
         <result column="name" property="name" javaType="java.lang.String"/>
@@ -49,5 +49,4 @@
     <delete id="deleteStudent">
         DELETE FROM student WHERE id = #{id}
     </delete>
-
 </mapper>

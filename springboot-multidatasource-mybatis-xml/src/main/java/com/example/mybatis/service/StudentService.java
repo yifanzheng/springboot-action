@@ -1,7 +1,7 @@
 package com.example.mybatis.service;
 
 import com.example.mybatis.entity.Student;
-import com.example.mybatis.mapper.StudentMapper;
+import com.example.mybatis.mapper.primary.StudentMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
