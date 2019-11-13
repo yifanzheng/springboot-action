@@ -48,12 +48,12 @@ spring.datasource.druid.stat-view-servlet.allow=true
 ### 配置 MyBatis 与 PageHelper 信息
 
 ```properties
-# mybatis 配置
+# MyBatis 配置
 mybatis.config-location=classpath:mybatis/mybatis-config.xml
 mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
 mybatis.type-aliases-package=com.example.mybatis.entity
 
-# pagehelper 分页
+# PagerHelper  分页
 pagehelper.helperDialect=mysql
 pagehelper.reasonable=true
 pagehelper.supportMethodsArguments=true

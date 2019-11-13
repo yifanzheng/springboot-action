@@ -37,6 +37,8 @@ spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver
 - 创建数据库事务 `DataSourceTransactionManager`
 - 创建 `SqlSessionTemplate`
 
+最关键的地方就是数据源配置这部分，需要一层一层注入,先创建`DataSource`，再创建`SqlSessionFactory`，然后再创建事务管理器`DataSourceTransactionManager`，最后包装到`SqlSessionTemplate`中。
+
 
 **数据源一**
 

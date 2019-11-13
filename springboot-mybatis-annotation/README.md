@@ -22,7 +22,7 @@
 spring.datasource.url=jdbc:mysql://localhost:3306/game?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
 spring.datasource.username=root
 spring.datasource.password=root
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
 
 ### 创建 Mapper 类
@@ -31,14 +31,18 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 @Mapper // 此处可以不用添加注解，可以统一在启动类上添加 @MapperScan
 public interface UserMapper {
 
-    @Select("SELECT * FROM user WHERE NAME = #{name}")
-    Users findByName(@Param("name") String name);
+    @Select("SELECT * FROM user WHERE username = #{username}")
+    User findByName(@Param("username") String name);
 
-    @Insert("INSERT INTO user(NAME, password) VALUES(#{name}, #{password})")
-    int insert(@Param("name") String name, @Param("password") String password);
+    @Insert("INSERT INTO user(username, password) VALUES(#{username}, #{password})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    int save(@Param("name") String name, @Param("password") String password);
 
     @UpdateProvider(type = UserDAOProvider.class, method = "updateByPrimaryKey")
     int updateById(@Param("user") User user);
+
+    @Delete("delete from user where id = #{id}")
+    int deleteById(@Param("id") Integer id);
 }
 ```
 其中，Update 方法使用的是一个 type 和一个 method 属性来指定，它们指定了 Provider 类中的一个方法。因为在进行数据更新时需要判断字段是否为空来决定是否更新这个字段，而在 XML 配置中可以使用 `<if>` 标签实现。如果使用注解的方式，就只能通过提供一个 Provider 类来动态生成 SQL 语句。
