@@ -32,6 +32,8 @@
 
 ## 数据缓存相关示例 
 
+- [springboot-cache](springboot-cache): Spring Boot 使用 ConcurrentMapCacheManager 开启缓存支持
+
 
 ## 日志框架相关示例
 
