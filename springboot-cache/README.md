@@ -266,10 +266,11 @@ public class CacheResource {
   
 通过多次向接口 `http://localhost:8080/api/users/star1` GET 数据来观察效果：
 
-![get](./asset/images/get.png)
+![get](../asset/imgs/cache-get.png)
 
 可以看到缓存的启用和效果如下所示：
-![result](./asset/images/result.png)
+
+![result](../asset/imgs/cache-result.png)
 
 
 

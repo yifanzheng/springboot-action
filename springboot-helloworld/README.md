@@ -63,7 +63,7 @@ Spring Boot Starter 它包含了一系列可以集成到应用里面的依赖包
 
 借助 Spring 官网：[https://start.spring.io/](https://start.spring.io/) 进行快速搭建。
 
-![SpringInit](../asset/imgs/springInit.png)  
+![SpringInit](../asset/imgs/spring-init.png)  
 
 点击 Generate，然后就会有一个 zip 包下载到本地，进行解压，导入到 IDE 即可开发。
 
