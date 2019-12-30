@@ -34,6 +34,10 @@
 
 - [springboot-cache](springboot-cache): Spring Boot 使用 ConcurrentMapCacheManager 开启缓存支持
 
+- [springboot-guava-cache](springboot-guava-cache): Spring Boot 集成 Guava Cache 实现缓存机制
+
+- [springboot-ehcache](springboot-ehcache): Spring Boot 集成 EHcache 实现缓存机制
+
 
 ## 日志框架相关示例
 

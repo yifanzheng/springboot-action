@@ -38,7 +38,7 @@ Spring 定义 CacheManager 和 Cache 接口用来统一不同的缓存技术。�
 `org.springframework.cache.interceptor.CacheResolver` 接口来实现自己的缓存解析器，并用该参数指定。
 
 
-- **@CachePut**：配置于函数上，能够根据参数定义条件来进行缓存，它与 @Cacheable 不同的是，它每次都会真是调用函数，所以主要用于数据新增和修改操作上。它的参数与 @Cacheable 类似，具体功能可参考上面对 @Cacheable 参数的解析。
+- **@CachePut**：配置于方法上，能够根据参数定义条件来进行缓存，它与 @Cacheable 不同的是，它不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入缓存中，所以主要用于数据新增和修改操作上。它的参数与 @Cacheable 类似，具体功能可参考上面对 @Cacheable 参数的解析。
 
 - **@CacheEvict**：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同 @Cacheable 一样的参数之外，它还有下面两个参数：
 
@@ -74,9 +74,9 @@ public class CacheApplication {
 </dependency>
 ```
 
-### 编写缓存业务代码
+### 准备数据 
 
-- 模拟数据库数据
+模拟数据库数据
 
 ```java
 /**
@@ -110,6 +110,8 @@ public class DataFactory {
 }
 
 ```
+
+### 编写缓存业务代码
 
 - 编写 DAO 层
 
@@ -264,7 +266,7 @@ public class CacheResource {
   
 通过多次向接口 `http://localhost:8080/api/users/star1` GET 数据来观察效果：
 
-![postman](./asset/images/get.png)
+![get](./asset/images/get.png)
 
 可以看到缓存的启用和效果如下所示：
 ![result](./asset/images/result.png)
