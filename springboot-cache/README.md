@@ -111,7 +111,7 @@ public class DataFactory {
 
 ```
 
-### 编写缓存业务代码
+### 编写业务代码
 
 - 编写 DAO 层
 

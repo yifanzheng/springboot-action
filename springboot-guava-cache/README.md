@@ -1,4 +1,4 @@
-## springboot 集成 Guava Cache 实现缓存机制
+## Spring Boot 集成 Guava Cache 实现缓存机制
 
 Guava Cache 是一个全内存的本地缓存实现，而且提供了线程安全机制，相比于数据库或 Redis 存储，访问内存中的数据会更加高效。  
 
@@ -29,6 +29,7 @@ Guava 官网介绍，下面的这几种情况可以考虑使用 Guava Cache：
     <version>27.0.1-jre</version>
 </dependency>
 ```
+
 ### 准备数据
 
 模拟数据库的数据
@@ -199,7 +200,7 @@ public class UserResource {
 
 通过多次向接口 `http://localhost:8080/api/users/star1` GET 数据来观察效果：
 
-![get](../asset/imgs/guava-cacheget.png)
+![get](../asset/imgs/guava-cache-get.png)
 
 可以看到缓存的启用和效果如下所示：  
 

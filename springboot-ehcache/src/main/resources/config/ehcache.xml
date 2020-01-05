@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ehcache>
+    <!-- 默认的 ehcache 缓存配置 -->
+    <defaultCache
+            eternal="false"
+            maxElementsInMemory="1000"
+            overflowToDisk="false"
+            diskPersistent="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="600"
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <!-- 缓存空间名称 -->
+    <cache name="user"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           diskPersistent="false"
+           timeToLiveSeconds="5"
+           memoryStoreEvictionPolicy="LRU"
+    />
+</ehcache>
