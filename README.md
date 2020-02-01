@@ -21,13 +21,21 @@
 ## 数据库存储相关示例
 
 - [springboot-c3p0](springboot-c3p0): Spring Boot 集成 C3P0 数据库连接池
+
 - [springboot-jdbctemplate](springboot-jdbctemplate): Spring Boot 集成 Druid 和 JdbcTemplate 操作数据库
+
 - [springboot-multidatasource-jdbctemplate](springboot-multidatasource-jdbctemplate): Spring Boot 集成 JdbcTemplate 实现多数据源配置
+
 - [springboot-jpa](springboot-jpa): Spring Boot 集成 JPA 操作数据库
+
 - [sprintboot-multidatasource-jpa](sprintboot-multidatasource-jpa): Spring Boot 集成 JPA 实现多数据源配置
+
 - [springboot-mybatis-xml](springboot-mybatis-xml): Spring Boot 集成 MyBatis （XML 方式）和 pagehelper 操作数据库
+
 - [springboot-multidatasource-mybatis-xml](springboot-multidatasource-mybatis-xml): Spring Boot 集成 MyBatis （XML 方式）实现多数据源配置
+
 - [springboot-mybatis-annotation](springboot-mybatis-annotation): Spring Boot 集成 MyBatis （注解方式）操作数据库
+
 - [springboot-multidatasource-mybatis-annotation](springboot-multidatasource-mybatis-annotation): Spring Boot 集成 MyBatis（注解方式） 实现多数据源配置
 
 ## 数据缓存相关示例 
@@ -37,6 +45,8 @@
 - [springboot-guava-cache](springboot-guava-cache): Spring Boot 集成 Guava Cache 实现缓存机制
 
 - [springboot-ehcache](springboot-ehcache): Spring Boot 集成 EHcache 实现缓存机制
+
+-[springboot-redis])(springboot-redis): Spring Boot 集成 Redis
 
 
 ## 日志框架相关示例

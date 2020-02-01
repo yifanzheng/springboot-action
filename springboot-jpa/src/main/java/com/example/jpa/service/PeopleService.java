@@ -4,7 +4,6 @@ import com.example.jpa.entity.People;
 import com.example.jpa.repository.PeopleRepository;
 import com.example.jpa.service.dto.PeopleDTO;
 import com.example.jpa.service.mapper.PeopleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,11 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class PeopleService {
 
-    @Autowired
     private PeopleRepository peopleRepository;
 
-    @Autowired
     private PeopleMapper peopleMapper;
+
+    public PeopleService(PeopleRepository peopleRepository, PeopleMapper peopleMapper) {
+        this.peopleRepository = peopleRepository;
+        this.peopleMapper = peopleMapper;
+    }
 
     public void savePeople(PeopleDTO dto) {
         People people = peopleMapper.convertToPeople(dto);
