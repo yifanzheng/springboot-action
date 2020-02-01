@@ -46,7 +46,7 @@
 
 - [springboot-ehcache](springboot-ehcache): Spring Boot 集成 EHcache 实现缓存机制
 
--[springboot-redis])(springboot-redis): Spring Boot 集成 Redis
+- [springboot-redis](springboot-redis): Spring Boot 集成 Redis 实现缓存机制
 
 
 ## 日志框架相关示例

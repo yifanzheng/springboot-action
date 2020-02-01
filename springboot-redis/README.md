@@ -1,4 +1,4 @@
-## Spring Boot 集成 Redis 缓存
+## Spring Boot 集成 Redis 实现缓存机制
 
 简单来说， Redis 就是一个数据库，不过与传统数据库不同的是 Redis 的数据是存在内存中的，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。另外，Redis 也经常用来做分布式锁。Redis 提供了多种数据类型来支持不同的业务场景。除此之外，Redis 支持事务 、持久化、LUA 脚本、LRU 驱动事件、多种集群方案。
 
