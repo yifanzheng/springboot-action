@@ -1,4 +1,5 @@
 ## Spring Boot 集成 JPA 操作数据库
+
 Jpa (Java Persistence API) 是 Sun 官方提出的 Java 持久化规范。它为 Java 开发人员提供了一种对象/关联映射工具来管理 Java 应用中的关系数据。它的出现主要是为了简化现有的持久化开发工作和整合 ORM 技术，结束现在 Hibernate，TopLink，JDO 等 ORM 框架各自为营的局面。
 
 下面我们来看看，Spring Boot 怎样集成 JPA。 

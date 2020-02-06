@@ -48,6 +48,8 @@
 
 - [springboot-redis](springboot-redis): Spring Boot 集成 Redis 实现缓存机制
 
+- [springboot-elasticsearch](springboot-elasticsearch): Spring Boot 集成 ElasticSearch （7.x 版本） 搜索引擎
+
 
 ## 日志框架相关示例
 

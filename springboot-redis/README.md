@@ -7,7 +7,7 @@
 在 pom.xml 文件，添加 Redis 项目依赖
 
 ```java
-<!--redis-->
+<!-- Redis -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-redis</artifactId>
