@@ -56,7 +56,9 @@
 
 ## 模板引擎相关示例
 
-待更新。。。
+- [springboot-freemarker](springboot-freemarker]): Spring Boot 集成 FreeMarker 模板引擎
+
+- [springboot-thymeleaf](springboot-thymeleaf): Spring Boot 集成 Thymeleaf 模板引擎
 
 ## 后记
 
