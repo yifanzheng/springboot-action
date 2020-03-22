@@ -1,7 +1,6 @@
-## Spring Boot 整合 Log4j 统一处理 Web 请求日志
+## Spring Boot 集成 Log4j 日志框架
 
-Java 有很多日志系统，如 Java Util Logging, Log4J, Log4J2, Logback 等。Spring Boot 
-Spring Boot 默认的日志框架是 Java Util Logging，并且 Spring Boot 也支持 Log4J、Logback 这些比较流行的日志框架。
+Java 有很多日志系统，如 Java Util Logging, Log4J, Log4J2, Logback 等。Spring Boot 默认的日志框架是 Java Util Logging，并且 Spring Boot 也支持 Log4J、Logback 这些比较流行的日志框架。
 
 Java 应用中，日志一般分为以下 5 个级别：
 
