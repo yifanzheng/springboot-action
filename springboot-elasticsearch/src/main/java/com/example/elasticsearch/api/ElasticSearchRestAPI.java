@@ -2,6 +2,7 @@ package com.example.elasticsearch.api;
 
 import com.alibaba.fastjson.JSON;
 import com.example.elasticsearch.exception.NotFoundException;
+import com.example.elasticsearch.exception.ServiceException;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -24,6 +25,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,9 +44,9 @@ import java.util.Map;
 @Service
 public class ElasticSearchRestAPI {
 
-    private static final int DEFAUT_SHARDS = 3;
+    private static final int DEFAULT_SHARDS = 3;
 
-    private static final int DEFAUT_REPLICAS = 1;
+    private static final int DEFAULT_REPLICAS = 1;
 
     @Autowired
     private RestHighLevelClient restHighLevelClient;
@@ -65,8 +67,8 @@ public class ElasticSearchRestAPI {
                 .field("properties", properties)
                 .endObject()
                 .startObject("settings")
-                .field("number_of_shards", DEFAUT_SHARDS)
-                .field("number_of_replicas", DEFAUT_REPLICAS)
+                .field("number_of_shards", DEFAULT_SHARDS)
+                .field("number_of_replicas", DEFAULT_REPLICAS)
                 .endObject()
                 .endObject();
 
@@ -223,7 +225,7 @@ public class ElasticSearchRestAPI {
      * 条件查询
      *
      * @param index         索引
-     * @param sourceBuilder 条件查询构建起
+     * @param sourceBuilder 条件查询构建器
      * @param <T>           数据类型
      * @return T 类型的集合
      * @throws IOException Rest Client 请求异常
@@ -243,6 +245,25 @@ public class ElasticSearchRestAPI {
         }
 
         return results;
+
+    }
+
+    /**
+     * 获取聚合数据
+     *
+     * @param searchSourceBuilder 条件查询构建器
+     * @param indices 索引
+     * @return 返回聚合集合
+     */
+    public Aggregations searchAggs(SearchSourceBuilder searchSourceBuilder, String... indices) {
+        try {
+            SearchRequest searchRequest = new SearchRequest(indices).source(searchSourceBuilder);
+            SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+
+            return searchResponse.getAggregations();
+        } catch (IOException e) {
+            throw new ServiceException("ElasticSearch client exception");
+        }
 
     }
 
