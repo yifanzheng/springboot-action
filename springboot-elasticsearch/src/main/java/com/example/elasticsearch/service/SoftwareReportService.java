@@ -122,7 +122,7 @@ public class SoftwareReportService {
             Long timestamp = ((ZonedDateTime) e.getKey()).toEpochSecond() * 1000;
             Long views = 0L;
             // 访问量
-            Aggregation speedAgg = e.getAggregations().get("view");
+            Aggregation speedAgg = e.getAggregations().get("views");
             if (speedAgg instanceof ParsedSum) {
                 ParsedSum sum = (ParsedSum) speedAgg;
                 views = new Double(sum.getValue()).longValue();
@@ -155,7 +155,7 @@ public class SoftwareReportService {
         searchSourceBuilder.query(queryBuilder);
 
         // 根据软件code和functionId进行分组统计
-        TermsAggregationBuilder aggregationBuilder = AggregationBuilders.terms("totalData")
+        TermsAggregationBuilder aggregationBuilder = AggregationBuilders.terms("topData")
                 .script(new Script("doc['code.keyword'].value+'#'+doc['functionId.keyword'].value"))
                 .subAggregation(AggregationBuilders.sum("totalViews").field("view"))
                 .subAggregation(
@@ -165,7 +165,7 @@ public class SoftwareReportService {
                                 .minDocCount(0)
                                 .extendedBounds(new ExtendedBounds(startTimestamp, endTimestamp))
                                 .subAggregation(
-                                        AggregationBuilders.sum("view").field("view")
+                                        AggregationBuilders.sum("views").field("view")
                                 )
                 )
                 .order(BucketOrder.aggregation("totalViews", false))
