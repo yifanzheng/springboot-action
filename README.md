@@ -56,9 +56,13 @@
 
 ## 模板引擎相关示例
 
-- [springboot-freemarker](springboot-freemarker]): Spring Boot 集成 FreeMarker 模板引擎
+- [springboot-freemarker](springboot-freemarker): Spring Boot 集成 FreeMarker 模板引擎
 
 - [springboot-thymeleaf](springboot-thymeleaf): Spring Boot 集成 Thymeleaf 模板引擎
+
+## 应用监控相关示例
+
+- [springboot-actuator](springboot-actuator): Spring Boot 配置 Actuator 监控应用
 
 ## 后记
 

@@ -1,4 +1,4 @@
-# Spring Boot 搭建 Actuator 监控中心
+## Spring Boot 配置 Actuator 监控应用
 
 我们知道 Spring Boot 是一个用于快速开发Java Web 的框架，不需要太多的配置即可使用 Spring 的大量功能。Spring Boot 遵循“约定大于配置的理念”，采用包扫描和自动化配置的机制来加载依赖 Jar 中的 Spring Bean，不需要任何 Xml 配置，就可以实现 Spring 的所有配置。虽然这样做的好处在于我们不需要像使用 Spring 那样编写一大堆的 XML 配置代码，能让我们的代码变得非常简洁，但整个应用的实例创建与依赖关系都被分散到了注解上，使得我们分析整个应用中资源和实例的各种关系变得非常的困难。
 
