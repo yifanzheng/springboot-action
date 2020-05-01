@@ -18,6 +18,10 @@
 
 - [springboot-properties](springboot-properties): Spring Boot 读取资源配置
 
+## Restful API 文档维护
+
+- [springboot-swagger](springboot-swagger): Spring Boot 集成 Swagger2 构建 API 文档
+
 ## 数据库存储相关示例
 
 - [springboot-c3p0](springboot-c3p0): Spring Boot 集成 C3P0 数据库连接池
@@ -63,6 +67,7 @@
 ## 应用监控相关示例
 
 - [springboot-actuator](springboot-actuator): Spring Boot 配置 Actuator 监控应用
+
 
 ## 后记
 
