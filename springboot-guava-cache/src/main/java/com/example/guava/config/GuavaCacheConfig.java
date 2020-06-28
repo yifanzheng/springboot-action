@@ -34,6 +34,7 @@ public class GuavaCacheConfig {
                 // 最大缓存数量 1000
                 .maximumSize(1000)
         );
+
         return cacheManager;
     }
 
