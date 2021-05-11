@@ -132,6 +132,19 @@ public class ElasticSearchRestAPI {
         restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
 
     }
+    
+    /**
+     * 更新 ES 文档
+     *
+     * @param index    索引
+     * @param document 文档
+     */
+    public void update(String index, ElasticSearchDocument<?> document) throws IOException {
+        UpdateRequest updateRequest = new UpdateRequest(index, document.getId());
+        updateRequest.doc(JSON.toJSONString(document.getData()), XContentType.JSON);
+        
+        restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
+    }
 
     /**
      * 批量保存文档
