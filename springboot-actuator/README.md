@@ -71,7 +71,7 @@ info.app.test=test
 # 打开所有监控端点，默认仅公开 health 和 info 端点
 management.endpoints.web.exposure.include=*
 # management.endpoint.health.show-details=always
-# Actuator 的访问路径，为了安全起见，一般使用独立的地址访问监控信息，同时也避免和自己应用的路径映射地址重复
+# Actuator 的访问路径，为了安全起见，一般使用独立的地址访问监控信息，同时也避免和自己应用的路径映射地址重复，Actuator 默认所有的监控点路径都在/actuator/*
 management.endpoints.web.base-path=/monitor
 # 关掉安全认证，但一般为了安全起见，不建议关闭
 management.security.enabled=false
