@@ -69,7 +69,3 @@
 - [springboot-actuator](springboot-actuator): Spring Boot 配置 Actuator 监控应用
 
 
-## 后记
-
-由于自身能力有限，若有错误或者不当之处，还请大家批评指正，一起学习交流！
-
